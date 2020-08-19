@@ -1,0 +1,201 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <title>Paper Bid</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
+
+</head>
+<body>
+    <header class="site-header">
+        <style>
+            html, body {
+                font-family: "Roboto", sans-serif;
+            }
+            /* overlay style*/
+            #overlay {
+                position: fixed;
+                display: none;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(0,0,0,0.5);
+                z-index: 2;
+                cursor: pointer;
+            }
+
+            #text {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                font-size: 50px;
+                color: white;
+                transform: translate(-50%,-50%);
+                -ms-transform: translate(-50%,-50%);
+            }
+        </style>
+        <style>
+            /* Column container */
+            .row {
+                position: fixed;
+                width: 20%;
+                height: 100%;
+                -ms-flex-wrap: wrap; /* IE10 */
+                flex-wrap: wrap;
+            }
+
+            /* Create two unequal columns that sits next to each other */
+            /* Sidebar/left column */
+            .side {
+                width: 80%;
+                height: 100%;
+                background-color: #f1f1f1;
+                padding: 50px;
+            }
+        </style>
+        <!-- Navbar -->
+        <div id="overlay" onclick="off()">
+            <div id="text">sfghgrtg</div>
+        </div>
+        <div class="w3-top w3-bar w3-dark bg-steel w3-theme w3-large fixed-top w3-expand-md">
+            <a class="-bar-item w3-button w3-large" href="javascript:void(0)"></a>
+            <a href="{% url 'blog-home' %}" class="w3-bar-item w3-button w3-theme-l1">Paper bid</a>
+            <a href="{% url 'blog-home' %}" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Home</a>
+            <!--overlay effect-->
+            <a onclick="on()" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Insructions</a>
+
+
+            <!-- Navbar Right Side -->
+            <nav class="nav w3-nav w3-right">
+                {% if user.is_authenticated %}
+                <p>Hello, <b> {{ user.username }} </b></p>
+                <a class="nav-item nav-link w3-hover-white" href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                <a class="nav-item nav-link w3-hover-white" href="{% url 'login' %}">Login</a>
+                {#  <a class="nav-item nav-link w3-hover-white" href="{% url 'register' %}">Register</a>#}
+                {% endif %}
+            </nav>
+
+        </div>
+
+        <!--side bar-->
+        <div class="row">
+            <div class="side">
+                <p><b>Personal Keywords</b></p>
+                <p>clustering, segmentation, history, analogy, semantic, game theory, tensor, scheduling, OWL, CCA, planning, ransac.</p>
+
+            </div>
+        </div>
+
+    </header>
+
+    <main role="main" class="container">
+        <div class="row">
+            <div>
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function on() {
+            document.getElementById("overlay").style.display = "block";
+        }
+
+        function off() {
+            document.getElementById("overlay").style.display = "none";
+        }
+    </script>
+
+
+    <script>
+        // Get the Sidebar
+        var mySidebar = document.getElementById("mySidebar");
+
+        // Get the DIV with overlay effect
+        var overlayBg = document.getElementById("myOverlay");
+
+        // Toggle between showing and hiding the sidebar, and add overlay effect
+        function w3_open() {
+            if (mySidebar.style.display === 'block') {
+                mySidebar.style.display = 'none';
+                overlayBg.style.display = "none";
+            } else {
+                mySidebar.style.display = 'block';
+                overlayBg.style.display = "block";
+            }
+        }
+
+        // Close the sidebar with the close button
+        function w3_close() {
+            mySidebar.style.display = "none";
+            overlayBg.style.display = "none";
+        }
+    </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="vendor/jquery/jquery-3.2.1.min.js" type="d3167bc261b63f843e038ac8-text/javascript"></script>
+
+    <script src="vendor/bootstrap/js/popper.js" type="d3167bc261b63f843e038ac8-text/javascript"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js" type="d3167bc261b63f843e038ac8-text/javascript"></script>
+
+    <script src="vendor/select2/select2.min.js" type="d3167bc261b63f843e038ac8-text/javascript"></script>
+
+    <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js" type="d3167bc261b63f843e038ac8-text/javascript"></script>
+    <script type="d3167bc261b63f843e038ac8-text/javascript">
+        $('.js-pscroll').each(function(){
+            var ps = new PerfectScrollbar(this);
+
+            $(window).on('resize', function(){
+                ps.update();
+            })
+        });
+
+
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13" type="d3167bc261b63f843e038ac8-text/javascript"></script>
+    <script type="d3167bc261b63f843e038ac8-text/javascript">
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-23581568-13');
+    </script>
+
+    <script src="js/main.js" type="d3167bc261b63f843e038ac8-text/javascript"></script>
+    <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="d3167bc261b63f843e038ac8-|49" defer=""></script>
+
+</body>
+</html>

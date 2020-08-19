@@ -1,0 +1,72 @@
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+        span.psw {
+            float: right;
+            padding-top: 16px;
+            color: black;
+        }
+
+        .modal-header, h4, .close {
+            background-color: #5f788a;
+            color: white !important;
+            text-align: center;
+            font-size: 30px;
+        }
+
+        .modal-footer {
+            background-color: #5f788a;
+        }
+
+        .ml-2 {
+            text-decoration-color: #5f788a;
+        }
+    </style>
+</head>
+
+
+
+<div class="content-section">
+    <div class="modal-dialog">
+        <form class="modal-content" method="POST">
+            <div class="modal-header" style="padding:35px 50px;">
+                <h4><span class="glyphicon glyphicon-lock"></span>Sign Up</h4>
+            </div>
+            <div class="modal-body" style="padding:40px 50px;">
+                {#                {{ form|crispy }}#}
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
+                    <input type="text" name="Username" class="form-control" id="usrname" placeholder="Enter usrname">
+                </div>
+                <div class="form-group">
+                    <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+                    <input type="text" name="Password" class="form-control" id="psw" placeholder="Enter password">
+                </div>
+                <input type="submit" value="Sign Up" class="ml-2" href="{% url 'blog-home' %}">
+                <div class="checkbox">
+                    <label><input type="checkbox" value="" checked>Remember me</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <small class="text-muted">
+                    <span class="psw">Already Have An Account? <a href="{% url 'login' %}">Sign In</a></span>
+                </small>
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    {% for message in messages %}
+    <h5> {{message}} </h5>
+    {% endfor %}
+</div>
+
+
+
+{% endblock content %}

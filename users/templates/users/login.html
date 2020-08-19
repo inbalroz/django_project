@@ -1,0 +1,47 @@
+
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <style>
+
+            .modal-header, h4, .close {
+                background-color: #5f788a;
+                color: white !important;
+                text-align: center;
+                font-size: 30px;
+            }
+
+            .modal-btm {
+                background-color: #5f788a;
+                color: white !important;
+                text-align: center;
+                font-size: 15px;
+                width:100%;
+                height:5%;
+            }
+        </style>
+    </head>
+
+
+    <div class="content-section">
+        <div class="modal-dialog">
+            <form class="modal-content" method="POST">
+                <div class="modal-header" style="padding:35px 50px;">
+                    <h4><span class="glyphicon glyphicon-lock"></span>Login</h4>
+                </div>
+                <div class="modal-body" style="padding:40px 50px" ;>
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div class="form-group">
+                        <button type="submit" class="modal-btm" >Login</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+        {% endblock content %}
