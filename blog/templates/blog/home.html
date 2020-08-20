@@ -212,14 +212,14 @@
                     </tr>
                     <tr>
                         <td>
-                            Filter by personal keywords:<br>
-                            <div id="keyword-filters">
-                                {% for keyword in user.profile.keywords_as_list %}
-                                <input type="checkbox" id="filter-{{keyword}}" value="{{keyword}}" /> <label for="filter-{{keyword}}" id="keywords_list">{{keyword}}</label><br>
-                                {% endfor %}
-                            </div>
-                            <input type="button" id="filter-button" value="Filter">
-
+                        <!--Filter by personal keywords:<br>
+                            <div id="keyword-filters">-->
+                            {% for keyword in user.profile.keywords_as_list %}
+                            <label for="filter-{{keyword}}">{{keyword}}</label><br>
+                            <!--<input type="checkbox" id="filter-{{keyword}}" value="{{keyword}}" /> <label for="filter-{{keyword}}">{{keyword}}</label><br>-->
+                            {% endfor %}
+                            <!--<input type="button" id="filter-button" value="Filter">-->
+                        </td>
                     </tr>
                     <tr style="border: 0px solid #ddd; background:#f1f1f1">
                         <td>
@@ -290,8 +290,8 @@
                                 <thead>
                                     <tr>
                                         <th width="10px">_Choice_</th>
-                                        <th>Paper ID<input type="submit" name="_sort-points" value="sort"></th>
-                                        <th>Bidding points <input type="submit" name="_sort-points" value="sort"></th>
+                                        <th>Paper ID</th>
+                                        <th>Bidding points <button name="_Save" onclick="sortTable()">Sort</button></th>
                                         <th>Title</th>
                                         <th width="20%">Abstract</th>
                                         <th>Keywords</th>
@@ -345,6 +345,43 @@
             </div>
         </div>
 
+        <script>//sortbids
+            function sortTable() {
+                var table, rows, switching, i, x, y, shouldSwitch;
+                table = document.getElementById("main-table");
+                switching = true;
+                /*Make a loop that will continue until
+                no switching has been done:*/
+                while (switching) {
+                    //start by saying: no switching is done:
+                    switching = false;
+                    rows = table.rows;
+                    /*Loop through all table rows (except the
+                    first, which contains table headers):*/
+                    for (i = 1; i < (rows.length - 1); i++) {
+                        //start by saying there should be no switching:
+                        shouldSwitch = false;
+                        /*Get the two elements you want to compare,
+                        one from current row and one from the next:*/
+                        x = rows[i].getElementsByTagName("TD")[2];
+                        y = rows[i + 1].getElementsByTagName("TD")[2];
+                        //check if the two rows should switch place:
+                        if (Number(x.innerHTML) > Number(y.innerHTML)) {
+                            //if so, mark as a switch and break the loop:
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                    if (shouldSwitch) {
+                        /*If a switch has been marked, make the switch
+                        and mark that a switch has been done:*/
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+                    }
+                }
+            }
+        </script>
+
         <script>
             //popup windows remind user to save
             function importent() {
@@ -354,7 +391,6 @@
 
 
         <div id="snackbar">Thank you. Your changes have been saved!</div>
-        <note>click save!</note>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">//save note side the save button-part1</script>
         <script>
             //save note side the save button-part2

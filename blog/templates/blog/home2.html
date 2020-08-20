@@ -1,4 +1,4 @@
-{% extends 'blog/base.html' %}
+{% extends 'blog/baseB.html' %}
 {% block content %}
 
 <style>
@@ -212,353 +212,348 @@
                         <th style="text-align: left;"><b>Personal Keywords</b></th>
                     </tr>
                     <tr>
-                        <td>
-                            Filter by personal keywords:<br>
+                        <td id="keywords_list">
+                        <!--Filter by personal keywords:<br>
                             <div id="keyword-filters">
-                                {% for keyword in user.profile.keywords_as_list %}
-                                <input type="checkbox" id="filter-{{keyword}}" value="{{keyword}}" /> <label for="filter-{{keyword}}">{{keyword}}</label><br>
-                                {% endfor %}
-                            </div>
-                            <input type="button" id="filter-button" value="Filter">
+                            {% for keyword in user.profile.keywords_as_list %}
+                            <input type="checkbox" id="filter-{{keyword}}" value="{{keyword}}" /> <label for="filter-{{keyword}}">{{keyword}}</label><br>
+                            {% endfor %}
+                        </div>
+                            <input type="button" id="filter-button" value="Filter">-->
 
                     </tr>
-                    <tr style="border: 0px solid #ddd; background:#f1f1f1">
-                        <td>
-                            Filter abstract:<br>
-                            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Filter by word..." title="Type in a name">
-                        </td>
-                    </tr>
-                    <tr style="border: 0px solid #ddd; background:#f1f1f1">
-                        <td>
-                            Filter keywords/title:<input type="search" class="form-control search" placeholder="Filter by word..." />
-                        </td>
-                    </tr>
-                    <tr style="background:#f1f1f1">
-                        <td>
-                            <input id="save_button" type="submit" name="_Save" value="Save" onclick="changes_saved()"><note>click save!</note>
-                        </td>
+                        <tr style="border: 0px solid #ddd; background:#f1f1f1">
+                            <td>
+                                Filter abstract:<br>
+                                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Filter by word..." title="Type in a name">
+                            </td>
+                        </tr>
+                        <tr style="border: 0px solid #ddd; background:#f1f1f1">
+                            <td>
+                                Filter keywords/title:<input type="search" class="form-control search" placeholder="Filter by word..." />
+                            </td>
+                        </tr>
+                        <tr style="background:#f1f1f1">
+                            <td>
+                                <input id="save_button" type="submit" name="_Save" value="Save" onclick="changes_saved()"><note>click save!</note>
+                            </td>
 
-                    </tr>
-                </table>
-
-
-                <div class="col-sm-8">
-                    <div class="firsttable">
-                        <table style="width:100%; border:1px solid #f2f2f2;" align="left">
-                            <tr>
-                                <th>
-                                    <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Yes
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <p class="dropdown-item" id="yes_list"></p>
-                                        </div>
-                                    </div>
-                                </th>
-                                <th>
-                                    <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Maybe
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <p class="dropdown-item" id="maybe_list"></p>
-                                        </div>
-                                    </div>
-                                </th>
-                            </tr>
-                            <tr>
-                                <th id='yes_num'> 0</th>
-                                <th id='maybe_num'> 0 </th>
-                            </tr>
-                            <tr>
-                                <th id='yes-counter'> 0</th>
-                                <th id='maybe-counter'> 0 </th>
-                            </tr>
-                        </table>
-                    </div>
+                        </tr>
+                    </table>
 
 
-
-
-
-                    <div class="secondtable">
-                        <div class="tableFixHead">
-                            <table cellspacing="0" cellpadding="1" border="1" id="main-table" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th width="10px">Choice</th>
-                                        <th>Paper ID<input type="submit" name="_sort-points" value="sort"></th>
-                                        <th>Title</th>
-                                        <th width="20%">Abstract</th>
-                                        <th>Keywords</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for essay in list %}
-                                    <tr>
-                                        <td width="250">
-                                            <fieldset>
-                                                <input type="radio" name="decision {{ essay.id }}" id="yes {{ essay.id }}" value="yes" onchange="yes_action({{ essay.id }})"> yes <br>
-                                                <input type="radio" name="decision {{ essay.id }}" id="maybe {{ essay.id }}" value="maybe" onchange="maybe_action({{ essay.id }})"> maybe<br>
-                                                <input type="radio" name="decision {{ essay.id }}" id="no {{ essay.id }}" value="no" onchange="no_action({{ essay.id }})" CHECKED> no
-                                            </fieldset>
-                                        </td>
-                                        <td width="8">#{{ essay.id }}</td>
-                                        <td width="350" class="keywords">
-                                            <span class="keyword">
-                                                {{essay.name}}
-                                            </span>
-                                        </td>
-                                        <td width="1400" class="keywords">
-                                            <div class="dropdown">
-                                                <button class="dropbtn">Show abstract</button>
-                                                <div class="dropdown-content">
-                                                    <p><b>abstract:</b> {{essay.abstract}}</p>
-                                                </div>
+                    <div class="col-sm-8">
+                        <div class="firsttable">
+                            <table style="width:100%; border:1px solid #f2f2f2;" align="left">
+                                <tr>
+                                    <th>
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Yes
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <p class="dropdown-item" id="yes_list"></p>
                                             </div>
-                                        </td>
-                                        <td width="200" class="keywords">
-                                            <span class="keyword">
-                                                {% for keyword in essay.keywords %}
-                                                {{ keyword }},
-                                                {% endfor %}
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Maybe
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <p class="dropdown-item" id="maybe_list"></p>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th id='yes_num'> 0</th>
+                                    <th id='maybe_num'> 0 </th>
+                                </tr>
                             </table>
                         </div>
-                        <input type="radio" name="id" value="{{ user.username }}" checked>
-                        <textarea hidden id="log" name="log" rows="100" cols="40"> {{ user }}
-                                            time, value, essay_id
-                        </textarea>
+
+
+                        <div class="secondtable">
+                            <div class="tableFixHead">
+                                <table cellspacing="0" cellpadding="1" border="1" id="main-table" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th width="10px">Choice</th>
+                                            <th>Paper ID</th>
+                                            <th>Title</th>
+                                            <th width="20%">Abstract</th>
+                                            <th>Keywords</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for essay in list %}
+                                        <tr>
+                                            <td width="250">
+                                                <fieldset>
+                                                    <input type="radio" name="decision {{ essay.id }}" id="yes {{ essay.id }}" value="yes" onchange="yes_action({{ essay.id }})"> yes <br>
+                                                    <input type="radio" name="decision {{ essay.id }}" id="maybe {{ essay.id }}" value="maybe" onchange="maybe_action({{ essay.id }})"> maybe<br>
+                                                    <input type="radio" name="decision {{ essay.id }}" id="no {{ essay.id }}" value="no" onchange="no_action({{ essay.id }})" CHECKED> no
+                                                </fieldset>
+                                            </td>
+                                            <td width="8">#{{ essay.id }}</td>
+                                            <td width="350" class="keywords">
+                                                <span class="keyword">
+                                                    {{essay.name}}
+                                                </span>
+                                            </td>
+                                            <td width="1400" class="keywords">
+                                                <div class="dropdown">
+                                                    <button class="dropbtn">Show abstract</button>
+                                                    <div class="dropdown-content">
+                                                        <p><b>abstract:</b> {{essay.abstract}}</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td width="200" class="keywords">
+                                                <span class="keyword">
+                                                    {% for keyword in essay.keywords %}
+                                                    {{ keyword }},
+                                                    {% endfor %}
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <input type="radio" name="id" value="{{ user.username }}" checked>
+                            <textarea hidden id="log" name="log" rows="100" cols="40"> {{ user }}
+                                                time, value, essay_id
+                            </textarea>
 
 
 
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <script>
-            //popup windows remind user to save
-            function importent() {
-                alert('Important: you have to click save before moving to another page or tab (including the Instructions tab).');
-            }
-        </script>
+            
 
-
-        <div id="snackbar">Thank you. Your changes have been saved!</div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">//save note side the save button-part1</script>
-        <script>
-            //save note side the save button-part2
-            $(document).ready(function () {
-                $("#save_button").click(function () {
-                    $("note").hide();
-                });
-            });
-        </script>
-
-        <script>
-            //after saved changes popup snackbar
-            function changes_saved() {
-                var x = document.getElementById("snackbar");
-                x.className = "show";
-                setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-            }
-        </script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script>
-            //filter from check box
-            $("#filter-button").on("click", function (e) {
-                // Show all rows (in case any were hidden by a previous filtering)
-                $("#main-table > tr:hidden, #main-table > tbody > tr:hidden").show();
-                // Get all filtered countries as array
-                var selCountries = $("#keyword-filters :checkbox:checked").map(function () {
-                    return $(this).val();
-                }).get();
-                if (selCountries.length < 1) {
-                    return; // No countries are selected!
+            <script>
+                //popup windows remind user to save
+                function importent() {
+                    alert('Important: you have to click save before moving to another page or tab (including the Instructions tab).');
                 }
-                var selCties = $("#city-filters :checkbox:checked").map(function () {
-                    return $(this).val();
-                }).get();
-                // Loop through all table rows
-                var x = $("#main-table > tr, #main-table > tbody > tr").filter(function (idx, ele) {
-                    var countries = $(ele).find('td.keywords span.keyword');
-                    var nFoundCountries = selCountries.filter(function (ele, idx) {
-                        return countries.text().indexOf(ele) != -1;
-                    }).length;
-                    if (selCties.length == 0) {
-                        return (nFoundCountries == 0);
-                    } else {
-                        var cities = $(ele).find('td.city');
-                        var nFoundCities = selCties.filter(function (ele, idx) {
-                            return cities.text().indexOf(ele) != -1;
-                        }).length;
+            </script>
 
-                        return !(nFoundCities == selCties.length &&
-                            (nFoundCountries == countries.length && nFoundCountries == selCountries.length));
+
+            <div id="snackbar">Thank you. Your changes have been saved!</div>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">//save note side the save button-part1</script>
+            <script>
+                //save note side the save button-part2
+                $(document).ready(function () {
+                    $("#save_button").click(function () {
+                        $("note").hide();
+                    });
+                });
+            </script>
+
+            <script>
+                //after saved changes popup snackbar
+                function changes_saved() {
+                    var x = document.getElementById("snackbar");
+                    x.className = "show";
+                    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+                }
+            </script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+            <script>
+                //filter from check box
+                $("#filter-button").on("click", function (e) {
+                    // Show all rows (in case any were hidden by a previous filtering)
+                    $("#main-table > tr:hidden, #main-table > tbody > tr:hidden").show();
+                    // Get all filtered countries as array
+                    var selCountries = $("#keyword-filters :checkbox:checked").map(function () {
+                        return $(this).val();
+                    }).get();
+                    if (selCountries.length < 1) {
+                        return; // No countries are selected!
                     }
-                }).hide();
-            });
-        </script>
+                    var selCties = $("#city-filters :checkbox:checked").map(function () {
+                        return $(this).val();
+                    }).get();
+                    // Loop through all table rows
+                    var x = $("#main-table > tr, #main-table > tbody > tr").filter(function (idx, ele) {
+                        var countries = $(ele).find('td.keywords span.keyword');
+                        var nFoundCountries = selCountries.filter(function (ele, idx) {
+                            return countries.text().indexOf(ele) != -1;
+                        }).length;
+                        if (selCties.length == 0) {
+                            return (nFoundCountries == 0);
+                        } else {
+                            var cities = $(ele).find('td.city');
+                            var nFoundCities = selCties.filter(function (ele, idx) {
+                                return cities.text().indexOf(ele) != -1;
+                            }).length;
 
-        <script>
-            //filter by word
-            function
+                            return !(nFoundCities == selCties.length &&
+                                (nFoundCountries == countries.length && nFoundCountries == selCountries.length));
+                        }
+                    }).hide();
+                });
+            </script>
 
-                myFunction() {
-                var input, filter, table, tr, td, cell, i, j;
-                input = document.getElementById("myInput");
-                filter = input.value.toUpperCase();
-                table = document.getElementById("main-table");
-                tr = table.getElementsByTagName("tr");
-                for (i = 1; i < tr.length; i++) {
-                    // Hide the row initially.
-                    tr[i].style.display = "none";
+            <script>
+                //filter by word
+                function
 
-                    td = tr[i].getElementsByTagName("td");
-                    for (var j = 0; j < td.length; j++) {
-                        cell = tr[i].getElementsByTagName("td")[j];
-                        if (cell) {
-                            if (cell.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                                tr[i].style.display = "";
-                                break;
+                    myFunction() {
+                    var input, filter, table, tr, td, cell, i, j;
+                    input = document.getElementById("myInput");
+                    filter = input.value.toUpperCase();
+                    table = document.getElementById("main-table");
+                    tr = table.getElementsByTagName("tr");
+                    for (i = 1; i < tr.length; i++) {
+                        // Hide the row initially.
+                        tr[i].style.display = "none";
+
+                        td = tr[i].getElementsByTagName("td");
+                        for (var j = 0; j < td.length; j++) {
+                            cell = tr[i].getElementsByTagName("td")[j];
+                            if (cell) {
+                                if (cell.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                    tr[i].style.display = "";
+                                    break;
+                                }
                             }
                         }
                     }
                 }
-            }
 
-        </script>
+            </script>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script>
-            //filter keyword/title and highlitening
-            $(".search").keyup(function () {
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+            <script>
+                //filter keyword/title and highlitening
+                $(".search").keyup(function () {
 
-                var rows = $("#main-table").find("tbody tr");
+                    var rows = $("#main-table").find("tbody tr");
 
-                //Filter the jquery object to get results.
-                if (this.value.length > 0) {
-                    //First hide all an remove class used to identify matched rows
-                    rows.removeClass("match").hide().filter(function () {
-                        var match = false;
-                        $(this).find("td.keywords span.keyword").each(function () {
-                            var indexOf = $(this).text().toLowerCase().indexOf($(".search").val().toLowerCase());
-                            //Check with indexOf if this row cell include search string
-                            if (indexOf !== -1) {
-                                match = true;
-                                return;
-                            }
-                        });
-                        return match;
-                    }).addClass("match").show();
-                } else {
-                    //If filter not provided show all
-                    rows.removeClass("match").show().find("mark").contents().unwrap();
+                    //Filter the jquery object to get results.
+                    if (this.value.length > 0) {
+                        //First hide all an remove class used to identify matched rows
+                        rows.removeClass("match").hide().filter(function () {
+                            var match = false;
+                            $(this).find("td.keywords span.keyword").each(function () {
+                                var indexOf = $(this).text().toLowerCase().indexOf($(".search").val().toLowerCase());
+                                //Check with indexOf if this row cell include search string
+                                if (indexOf !== -1) {
+                                    match = true;
+                                    return;
+                                }
+                            });
+                            return match;
+                        }).addClass("match").show();
+                    } else {
+                        //If filter not provided show all
+                        rows.removeClass("match").show().find("mark").contents().unwrap();
+                    }
+
+                    highlight(this.value);
+                })
+
+                var highlight = function (string) {
+                    $("#main-table").find("tbody tr.match td.keywords span.keyword").each(function () {
+
+                        if ($(this).text().indexOf(string) === -1)
+                            return;
+
+                        var matchStartIndex = $(this).text().toLowerCase().indexOf(string.toLowerCase());
+                        var matchEndIndex = matchStartIndex + string.length - 1;
+
+                        var beforeMatch = $(this).text().slice(0, matchStartIndex);
+                        var matchText = $(this).text().slice(matchStartIndex, matchEndIndex + 1);
+                        var afterMatch = $(this).text().slice(matchEndIndex + 1);
+
+                        //Here set selected text to e.g. bold style
+                        $(this).html(beforeMatch + "<mark>" + matchText + "</mark>" + afterMatch);
+                    });
+                };
+
+            </script>
+
+            <script>
+        window.onload = function WindowLoad(event) {
+            document.getElementById('keywords_list').innerHTML = "{{ user.profile.keywords }}".replace(/,/gi,"<br>");
+            init_state = "{{ user.profile.state }}" ;
+            for (var x = 0; x < init_state.length; x++) {
+                var c = init_state.charAt(x);
+
+                if(c=='1'){
+                    document.getElementById('maybe ' + x).click();
+                }
+                if (c=='2'){
+                    document.getElementById('yes ' + x).click();
                 }
 
-                highlight(this.value);
-            })
-
-            var highlight = function (string) {
-                $("#main-table").find("tbody tr.match td.keywords span.keyword").each(function () {
-
-                    if ($(this).text().indexOf(string) === -1)
-                        return;
-
-                    var matchStartIndex = $(this).text().toLowerCase().indexOf(string.toLowerCase());
-                    var matchEndIndex = matchStartIndex + string.length - 1;
-
-                    var beforeMatch = $(this).text().slice(0, matchStartIndex);
-                    var matchText = $(this).text().slice(matchStartIndex, matchEndIndex + 1);
-                    var afterMatch = $(this).text().slice(matchEndIndex + 1);
-
-                    //Here set selected text to e.g. bold style
-                    $(this).html(beforeMatch + "<mark>" + matchText + "</mark>" + afterMatch);
-                });
-            };
-
-        </script>
-
-        <script>
-    window.onload = function WindowLoad(event) {
-        document.getElementById('keywords_list').innerHTML = "{{ user.profile.keywords }}".replace(/,/gi,"<br>");
-        init_state = "{{ user.profile.state }}" ;
-        for (var x = 0; x < init_state.length; x++) {
-            var c = init_state.charAt(x);
-
-            if(c=='1'){
-                document.getElementById('maybe ' + x).click();
             }
-            if (c=='2'){
-                document.getElementById('yes ' + x).click();
+        };
+
+        var yes_list = [];
+        var maybe_list = [];
+        var index = 0;
+        function update() {
+            text_yes = '';
+            text_maybe = '';
+            for(var i=0; i<yes_list.length;i++){
+                text_yes = (text_yes + '#' + yes_list[i]+ '<br>')
             }
+            for(var i=0; i<maybe_list.length;i++){
+                text_maybe = (text_maybe + '#' + maybe_list[i]+ '<br>')
+            }
+            document.getElementById('maybe_list').innerHTML = text_maybe;
+            document.getElementById('yes_list').innerHTML = text_yes;
+            document.getElementById('yes_num').innerHTML = ('yes bids: ' + yes_list.length);
+            document.getElementById('maybe_num').innerHTML = ('maybe bids: ' + maybe_list.length);
+        }
+        function yes_action(id) {
+            yes_list.push(id);
+            index = maybe_list.indexOf(id);
+            if (index > -1) {
+                maybe_list.splice(index, 1);
+            }
+            var d = new Date();
+            var n = d.getTime();
+            document.getElementById('log').value += n + ", 1, " + id + " \\\n";
+            update();
+        }
 
-        }
-    };
-
-    var yes_list = [];
-    var maybe_list = [];
-    var index = 0;
-    function update() {
-        text_yes = '';
-        text_maybe = '';
-        for(var i=0; i<yes_list.length;i++){
-            text_yes = (text_yes + '#' + yes_list[i]+ '<br>')
-        }
-        for(var i=0; i<maybe_list.length;i++){
-            text_maybe = (text_maybe + '#' + maybe_list[i]+ '<br>')
-        }
-        document.getElementById('maybe_list').innerHTML = text_maybe;
-        document.getElementById('yes_list').innerHTML = text_yes;
-        document.getElementById('yes_num').innerHTML = ('yes bids: ' + yes_list.length);
-        document.getElementById('maybe_num').innerHTML = ('maybe bids: ' + maybe_list.length);
-    }
-    function yes_action(id) {
-        yes_list.push(id);
-        index = maybe_list.indexOf(id);
-        if (index > -1) {
+        function no_action(id) {
+            index = maybe_list.indexOf(id);
+            if (index > -1) {
             maybe_list.splice(index, 1);
+            }
+            index = yes_list.indexOf(id);
+            if (index > -1) {
+                yes_list.splice(index, 1);
+            }
+            var d = new Date();
+            var n = d.getTime();
+            document.getElementById('log').value += n + ", 0," + id + " \\\n";
+            update();
         }
-        var d = new Date();
-        var n = d.getTime();
-        document.getElementById('log').value += n + ", 1, " + id + " \\\n";
-        update();
-    }
 
-    function no_action(id) {
-        index = maybe_list.indexOf(id);
-        if (index > -1) {
-        maybe_list.splice(index, 1);
+        function maybe_action(id) {
+            maybe_list.push(id);
+            index = yes_list.indexOf(id);
+            if (index > -1) {
+                yes_list.splice(index, 1);
+            }
+            var d = new Date();
+            var n = d.getTime();
+            document.getElementById('log').value += n + ", 0," + id + " \\\n";
+            update();
         }
-        index = yes_list.indexOf(id);
-        if (index > -1) {
-            yes_list.splice(index, 1);
-        }
-        var d = new Date();
-        var n = d.getTime();
-        document.getElementById('log').value += n + ", 0," + id + " \\\n";
-        update();
-    }
 
-    function maybe_action(id) {
-        maybe_list.push(id);
-        index = yes_list.indexOf(id);
-        if (index > -1) {
-            yes_list.splice(index, 1);
-        }
-        var d = new Date();
-        var n = d.getTime();
-        document.getElementById('log').value += n + ", 0," + id + " \\\n";
-        update();
-    }
-
-        </script>
+            </script>
     </form>
 </body>
-    {% endblock content %}
+{% endblock content %}
