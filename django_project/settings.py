@@ -24,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'hpy%%-r48fse0lt)d)vv048r5ey%-mvw!vtxw+zq(c7wq4^k*w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['paper-bid.herokuapp.com',
+ALLOWED_HOSTS = ['paperbid.herokuapp.com',
                  '127.0.0.1']
 
 
