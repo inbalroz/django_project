@@ -6,12 +6,9 @@
     "\\blog\\templates\\blog",
     "\\django_project",
     "\\users",
-    "\\users\\static",
-    "\\users\\static\\mysite",
-    "\\users\\static\\mysite\\images",
     "\\users\\templates",
     "\\users\\templates\\users"
   ],
-  "SelectedNode": "\\django_project\\settings.py",
+  "SelectedNode": "\\users\\templates",
   "PreviewInSolutionExplorer": false
 }
