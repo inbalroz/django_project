@@ -86,7 +86,7 @@
 
 
     .firsttable {
-        height: 200px;
+        height: 210px;
         background: #f2f2f2;
         width: 1000px;
         scrollbar-base-color: gold;
@@ -97,6 +97,13 @@
 
     .secondtable {
         height: 100%;
+        width: 1000px;
+        overflow: auto;
+        scrollbar-base-color: gold;
+        font-family: sans-serif;
+    }
+    .thirdtable {
+        height: 90px;
         width: 1000px;
         overflow: auto;
         scrollbar-base-color: gold;
@@ -190,6 +197,7 @@
 
     #myInput {
         width: 100%;
+        height: 40px;
         font-size: 16px;
         padding: 12px 0px 12px 5px;
         border: 1px solid #ddd;
@@ -197,6 +205,7 @@
 
     .search {
         width: 100%;
+        height: 40px;
         font-size: 16px;
         padding: 12px 0px 12px 5px;
         border: 1px solid #ddd;
@@ -209,11 +218,11 @@
             <div class="row">
                 <table style="width:18%; height:100%">
                     <tr>
-                        <th style="text-align: left;"><b>Personal Keywords</b></th>
+                        <th><b>Personal Keywords</b></th>
                     </tr>
-                    <tr>
+                    <tr style="border: 1px solid #ddd;">
                         <td id="keywords_list">
-                        <!--Filter by personal keywords:<br>
+                            <!--Filter by personal keywords:<br>
                             <div id="keyword-filters">
                             {% for keyword in user.profile.keywords_as_list %}
                             <input type="checkbox" id="filter-{{keyword}}" value="{{keyword}}" /> <label for="filter-{{keyword}}">{{keyword}}</label><br>
@@ -222,265 +231,276 @@
                             <input type="button" id="filter-button" value="Filter">-->
 
                     </tr>
-                        <tr style="border: 0px solid #ddd; background:#f1f1f1">
-                            <td>
-                                Filter abstract:<br>
-                                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Filter by word..." title="Type in a name">
-                            </td>
-                        </tr>
-                        <tr style="border: 0px solid #ddd; background:#f1f1f1">
-                            <td>
-                                Filter keywords/title:<input type="search" class="form-control search" placeholder="Filter by word..." />
-                            </td>
-                        </tr>
-                        <tr style="background:#f1f1f1">
-                            <td>
-                                <input id="save_button" type="submit" name="_Save" value="Save" onclick="changes_saved()"><note>click save!</note>
-                            </td>
-
-                        </tr>
-                    </table>
+                    <tr style="border: 0px solid #ddd; background:#f1f1f1">
+                    </tr>
+                    <tr>
+                    </tr>
+                    <tr>
+                    </tr>
+                </table>
 
 
-                    <div class="col-sm-8">
-                        <div class="firsttable">
-                            <table style="width:100%; border:1px solid #f2f2f2;" align="left">
-                                <tr>
-                                    <th>
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Yes
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <p class="dropdown-item" id="yes_list"></p>
-                                            </div>
+                <div class="col-sm-8">
+                    <div class="firsttable">
+                        <table style="width:100%; border:1px solid #f2f2f2;" align="left">
+                            <tr>
+                                <th>
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Yes
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <p class="dropdown-item" id="yes_list"></p>
                                         </div>
-                                    </th>
-                                    <th>
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Maybe
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <p class="dropdown-item" id="maybe_list"></p>
-                                            </div>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Maybe
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <p class="dropdown-item" id="maybe_list"></p>
                                         </div>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th id='yes_num'> 0</th>
-                                    <th id='maybe_num'> 0 </th>
-                                </tr>
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th id='yes_num'> 0</th>
+                                <th id='maybe_num'> 0 </th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>
+                                    <input id="save_button" type="submit" name="_Save" value="Save" onclick="changes_saved()"><note>click save!</note>
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="thirdtable">
+                        <table style="width:100%; border:1px solid #f2f2f2;" align="left">
+                            <tr>
+                                <td>
+                                    Filter abstract:<br>
+                                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Filter by word..." title="Type in a name">
+                                </td>
+                                <td>
+                                    Filter keywords/title:<input type="search" class="form-control search" placeholder="Filter by word..." />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+
+                    <div class="secondtable">
+                        <div class="tableFixHead">
+                            <table cellspacing="0" cellpadding="1" border="1" id="main-table" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th width="10px">Choice</th>
+                                        <th>Paper ID</th>
+                                        <th>Title</th>
+                                        <th width="20%">Abstract</th>
+                                        <th>Keywords</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for essay in list %}
+                                    <tr>
+                                        <td width="250">
+                                            <fieldset>
+                                                <input type="radio" name="decision {{ essay.id }}" id="yes {{ essay.id }}" value="yes" onchange="yes_action({{ essay.id }})"> yes <br>
+                                                <input type="radio" name="decision {{ essay.id }}" id="maybe {{ essay.id }}" value="maybe" onchange="maybe_action({{ essay.id }})"> maybe<br>
+                                                <input type="radio" name="decision {{ essay.id }}" id="no {{ essay.id }}" value="no" onchange="no_action({{ essay.id }})" CHECKED> no
+                                            </fieldset>
+                                        </td>
+                                        <td width="8">#{{ essay.id }}</td>
+                                        <td width="350" class="keywords">
+                                            <span class="keyword">
+                                                {{essay.name}}
+                                            </span>
+                                        </td>
+                                        <td width="1400" class="keywords">
+                                            <div class="dropdown">
+                                                <button class="dropbtn">Show abstract</button>
+                                                <div class="dropdown-content">
+                                                    <p><b>abstract:</b> {{essay.abstract}}</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td width="200" class="keywords">
+                                            <span class="keyword">
+                                                {% for keyword in essay.keywords %}
+                                                {{ keyword }},
+                                                {% endfor %}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
                             </table>
                         </div>
-
-
-                        <div class="secondtable">
-                            <div class="tableFixHead">
-                                <table cellspacing="0" cellpadding="1" border="1" id="main-table" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th width="10px">Choice</th>
-                                            <th>Paper ID</th>
-                                            <th>Title</th>
-                                            <th width="20%">Abstract</th>
-                                            <th>Keywords</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for essay in list %}
-                                        <tr>
-                                            <td width="250">
-                                                <fieldset>
-                                                    <input type="radio" name="decision {{ essay.id }}" id="yes {{ essay.id }}" value="yes" onchange="yes_action({{ essay.id }})"> yes <br>
-                                                    <input type="radio" name="decision {{ essay.id }}" id="maybe {{ essay.id }}" value="maybe" onchange="maybe_action({{ essay.id }})"> maybe<br>
-                                                    <input type="radio" name="decision {{ essay.id }}" id="no {{ essay.id }}" value="no" onchange="no_action({{ essay.id }})" CHECKED> no
-                                                </fieldset>
-                                            </td>
-                                            <td width="8">#{{ essay.id }}</td>
-                                            <td width="350" class="keywords">
-                                                <span class="keyword">
-                                                    {{essay.name}}
-                                                </span>
-                                            </td>
-                                            <td width="1400" class="keywords">
-                                                <div class="dropdown">
-                                                    <button class="dropbtn">Show abstract</button>
-                                                    <div class="dropdown-content">
-                                                        <p><b>abstract:</b> {{essay.abstract}}</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td width="200" class="keywords">
-                                                <span class="keyword">
-                                                    {% for keyword in essay.keywords %}
-                                                    {{ keyword }},
-                                                    {% endfor %}
-                                                </span>
-                                            </td>
-                                        </tr>
-                                        {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                            <input type="radio" name="id" value="{{ user.username }}" checked>
-                            <textarea hidden id="log" name="log" rows="100" cols="40"> {{ user }}
+                        <input type="radio" name="id" value="{{ user.username }}" checked>
+                        <textarea hidden id="log" name="log" rows="100" cols="40"> {{ user }}
                                                 time, value, essay_id
                             </textarea>
-
-
-
-                        </div>
                     </div>
                 </div>
             </div>
-
-            
-
-            <script>
-                //popup windows remind user to save
-                function importent() {
-                    alert('Important: you have to click save before moving to another page or tab (including the Instructions tab).');
-                }
-            </script>
+        </div>
 
 
-            <div id="snackbar">Thank you. Your changes have been saved!</div>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">//save note side the save button-part1</script>
-            <script>
-                //save note side the save button-part2
-                $(document).ready(function () {
-                    $("#save_button").click(function () {
-                        $("note").hide();
-                    });
+        <!--save note side the save button-part1-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $("#save_button").click(function () {
+                    $("note").hide();
                 });
-            </script>
+            });
+        </script>
 
-            <script>
-                //after saved changes popup snackbar
-                function changes_saved() {
-                    var x = document.getElementById("snackbar");
-                    x.className = "show";
-                    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+
+        <div id="snackbar">Thank you. Your changes have been saved!</div>
+        <script>
+            //save note side the save button-part2
+            $(document).ready(function () {
+                $("#save_button").click(function () {
+                    $("note").hide();
+                });
+            });
+        </script>
+
+        <script>
+            //after saved changes popup snackbar
+            function changes_saved() {
+                var x = document.getElementById("snackbar");
+                x.className = "show";
+                setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+            }
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+            //filter from check box
+            $("#filter-button").on("click", function (e) {
+                // Show all rows (in case any were hidden by a previous filtering)
+                $("#main-table > tr:hidden, #main-table > tbody > tr:hidden").show();
+                // Get all filtered countries as array
+                var selCountries = $("#keyword-filters :checkbox:checked").map(function () {
+                    return $(this).val();
+                }).get();
+                if (selCountries.length < 1) {
+                    return; // No countries are selected!
                 }
-            </script>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-            <script>
-                //filter from check box
-                $("#filter-button").on("click", function (e) {
-                    // Show all rows (in case any were hidden by a previous filtering)
-                    $("#main-table > tr:hidden, #main-table > tbody > tr:hidden").show();
-                    // Get all filtered countries as array
-                    var selCountries = $("#keyword-filters :checkbox:checked").map(function () {
-                        return $(this).val();
-                    }).get();
-                    if (selCountries.length < 1) {
-                        return; // No countries are selected!
-                    }
-                    var selCties = $("#city-filters :checkbox:checked").map(function () {
-                        return $(this).val();
-                    }).get();
-                    // Loop through all table rows
-                    var x = $("#main-table > tr, #main-table > tbody > tr").filter(function (idx, ele) {
-                        var countries = $(ele).find('td.keywords span.keyword');
-                        var nFoundCountries = selCountries.filter(function (ele, idx) {
-                            return countries.text().indexOf(ele) != -1;
+                var selCties = $("#city-filters :checkbox:checked").map(function () {
+                    return $(this).val();
+                }).get();
+                // Loop through all table rows
+                var x = $("#main-table > tr, #main-table > tbody > tr").filter(function (idx, ele) {
+                    var countries = $(ele).find('td.keywords span.keyword');
+                    var nFoundCountries = selCountries.filter(function (ele, idx) {
+                        return countries.text().indexOf(ele) != -1;
+                    }).length;
+                    if (selCties.length == 0) {
+                        return (nFoundCountries == 0);
+                    } else {
+                        var cities = $(ele).find('td.city');
+                        var nFoundCities = selCties.filter(function (ele, idx) {
+                            return cities.text().indexOf(ele) != -1;
                         }).length;
-                        if (selCties.length == 0) {
-                            return (nFoundCountries == 0);
-                        } else {
-                            var cities = $(ele).find('td.city');
-                            var nFoundCities = selCties.filter(function (ele, idx) {
-                                return cities.text().indexOf(ele) != -1;
-                            }).length;
 
-                            return !(nFoundCities == selCties.length &&
-                                (nFoundCountries == countries.length && nFoundCountries == selCountries.length));
-                        }
-                    }).hide();
-                });
-            </script>
+                        return !(nFoundCities == selCties.length &&
+                            (nFoundCountries == countries.length && nFoundCountries == selCountries.length));
+                    }
+                }).hide();
+            });
+        </script>
 
-            <script>
-                //filter by word
-                function
+        <script>
+            //filter by word
+            function
 
-                    myFunction() {
-                    var input, filter, table, tr, td, cell, i, j;
-                    input = document.getElementById("myInput");
-                    filter = input.value.toUpperCase();
-                    table = document.getElementById("main-table");
-                    tr = table.getElementsByTagName("tr");
-                    for (i = 1; i < tr.length; i++) {
-                        // Hide the row initially.
-                        tr[i].style.display = "none";
+                myFunction() {
+                var input, filter, table, tr, td, cell, i, j;
+                input = document.getElementById("myInput");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("main-table");
+                tr = table.getElementsByTagName("tr");
+                for (i = 1; i < tr.length; i++) {
+                    // Hide the row initially.
+                    tr[i].style.display = "none";
 
-                        td = tr[i].getElementsByTagName("td");
-                        for (var j = 0; j < td.length; j++) {
-                            cell = tr[i].getElementsByTagName("td")[j];
-                            if (cell) {
-                                if (cell.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                                    tr[i].style.display = "";
-                                    break;
-                                }
+                    td = tr[i].getElementsByTagName("td");
+                    for (var j = 0; j < td.length; j++) {
+                        cell = tr[i].getElementsByTagName("td")[j];
+                        if (cell) {
+                            if (cell.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                                break;
                             }
                         }
                     }
                 }
+            }
 
-            </script>
+        </script>
 
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-            <script>
-                //filter keyword/title and highlitening
-                $(".search").keyup(function () {
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+            //filter keyword/title and highlitening
+            $(".search").keyup(function () {
 
-                    var rows = $("#main-table").find("tbody tr");
+                var rows = $("#main-table").find("tbody tr");
 
-                    //Filter the jquery object to get results.
-                    if (this.value.length > 0) {
-                        //First hide all an remove class used to identify matched rows
-                        rows.removeClass("match").hide().filter(function () {
-                            var match = false;
-                            $(this).find("td.keywords span.keyword").each(function () {
-                                var indexOf = $(this).text().toLowerCase().indexOf($(".search").val().toLowerCase());
-                                //Check with indexOf if this row cell include search string
-                                if (indexOf !== -1) {
-                                    match = true;
-                                    return;
-                                }
-                            });
-                            return match;
-                        }).addClass("match").show();
-                    } else {
-                        //If filter not provided show all
-                        rows.removeClass("match").show().find("mark").contents().unwrap();
-                    }
+                //Filter the jquery object to get results.
+                if (this.value.length > 0) {
+                    //First hide all an remove class used to identify matched rows
+                    rows.removeClass("match").hide().filter(function () {
+                        var match = false;
+                        $(this).find("td.keywords span.keyword").each(function () {
+                            var indexOf = $(this).text().toLowerCase().indexOf($(".search").val().toLowerCase());
+                            //Check with indexOf if this row cell include search string
+                            if (indexOf !== -1) {
+                                match = true;
+                                return;
+                            }
+                        });
+                        return match;
+                    }).addClass("match").show();
+                } else {
+                    //If filter not provided show all
+                    rows.removeClass("match").show().find("mark").contents().unwrap();
+                }
 
-                    highlight(this.value);
-                })
+                highlight(this.value);
+            })
 
-                var highlight = function (string) {
-                    $("#main-table").find("tbody tr.match td.keywords span.keyword").each(function () {
+            var highlight = function (string) {
+                $("#main-table").find("tbody tr.match td.keywords span.keyword").each(function () {
 
-                        if ($(this).text().indexOf(string) === -1)
-                            return;
+                    if ($(this).text().indexOf(string) === -1)
+                        return;
 
-                        var matchStartIndex = $(this).text().toLowerCase().indexOf(string.toLowerCase());
-                        var matchEndIndex = matchStartIndex + string.length - 1;
+                    var matchStartIndex = $(this).text().toLowerCase().indexOf(string.toLowerCase());
+                    var matchEndIndex = matchStartIndex + string.length - 1;
 
-                        var beforeMatch = $(this).text().slice(0, matchStartIndex);
-                        var matchText = $(this).text().slice(matchStartIndex, matchEndIndex + 1);
-                        var afterMatch = $(this).text().slice(matchEndIndex + 1);
+                    var beforeMatch = $(this).text().slice(0, matchStartIndex);
+                    var matchText = $(this).text().slice(matchStartIndex, matchEndIndex + 1);
+                    var afterMatch = $(this).text().slice(matchEndIndex + 1);
 
-                        //Here set selected text to e.g. bold style
-                        $(this).html(beforeMatch + "<mark>" + matchText + "</mark>" + afterMatch);
-                    });
-                };
+                    //Here set selected text to e.g. bold style
+                    $(this).html(beforeMatch + "<mark>" + matchText + "</mark>" + afterMatch);
+                });
+            };
 
-            </script>
+        </script>
 
-            <script>
+        <script>
         window.onload = function WindowLoad(event) {
             document.getElementById('keywords_list').innerHTML = "{{ user.profile.keywords }}".replace(/,/gi,"<br>");
             init_state = "{{ user.profile.state }}" ;
@@ -553,7 +573,7 @@
             update();
         }
 
-            </script>
+        </script>
     </form>
 </body>
 {% endblock content %}

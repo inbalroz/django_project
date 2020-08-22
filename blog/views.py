@@ -42,7 +42,24 @@ def home(request):
         zipped.sort(key=lambda x: x[1], reverse=True)
         res = list(zip(*zipped))
         context = {'list': res[0]}
-        return render(request, 'blog/home.html', context)
+        content = ''
+        for i in range(len(Essay_list)):
+            submitted = '0'
+            if request.POST["decision {}".format(i)] == "yes":
+                submitted = '2'
+            elif request.POST["decision {}".format(i)] == "maybe":
+                submitted = '1'
+            content = content + submitted
+        log = request.POST["log"]
+        post = Post(id=str(request.user.id), content=str(content), log=log)
+        post.save()
+        profile = Profile(user=request.user, state=str(content), log=request.user.profile.log +"\n"+ log, keywords=request.user.profile.keywords,prices=request.user.profile.prices, group=request.user.profile.group, academic_position=request.user.profile.academic_position, article_reviewed=request.user.profile.article_reviewed)
+        profile.save()
+        print("success")
+        if request.user.profile.group == 'A':
+            return render(request, 'blog/home.html', context)
+        elif request.user.profile.group == 'B':
+            return render(request, 'blog/home2.html', context)
     elif request.user.is_authenticated:
         if request.user.profile.group == 'A':
             return render(request, 'blog/home.html', context)

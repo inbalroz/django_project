@@ -85,7 +85,7 @@
 
 
     .firsttable {
-        height: 200px;
+        height: 265px;
         background: #f2f2f2;
         width: 1000px;
         scrollbar-base-color: gold;
@@ -96,6 +96,14 @@
 
     .secondtable {
         height: 900px;
+        width: 1000px;
+        overflow: auto;
+        scrollbar-base-color: gold;
+        font-family: sans-serif;
+    }
+
+    .thirdtable {
+        height: 90px;
         width: 1000px;
         overflow: auto;
         scrollbar-base-color: gold;
@@ -189,6 +197,7 @@
 
     #myInput {
         width: 100%;
+        height: 40px;
         font-size: 16px;
         padding: 12px 0px 12px 5px;
         border: 1px solid #ddd;
@@ -196,6 +205,7 @@
 
     .search {
         width: 100%;
+        height: 40px;
         font-size: 16px;
         padding: 12px 0px 12px 5px;
         border: 1px solid #ddd;
@@ -210,10 +220,10 @@
                     <tr>
                         <th style="text-align: left;"><b>Personal Keywords</b></th>
                     </tr>
-                    <tr>
+                    <tr style="border: 1px solid #ddd;">
                         <td>
-                        <!--Filter by personal keywords:<br>
-                            <div id="keyword-filters">-->
+                            <!--Filter by personal keywords:<br>
+                        <div id="keyword-filters">-->
                             {% for keyword in user.profile.keywords_as_list %}
                             <label for="filter-{{keyword}}">{{keyword}}</label><br>
                             <!--<input type="checkbox" id="filter-{{keyword}}" value="{{keyword}}" /> <label for="filter-{{keyword}}">{{keyword}}</label><br>-->
@@ -222,21 +232,10 @@
                         </td>
                     </tr>
                     <tr style="border: 0px solid #ddd; background:#f1f1f1">
-                        <td>
-                            Filter abstract:<br>
-                            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Filter by word..." title="Type in a name">
-                        </td>
                     </tr>
                     <tr style="border: 0px solid #ddd; background:#f1f1f1">
-                        <td>
-                            Filter keywords/title:<input type="search" class="form-control search" placeholder="Filter by word..." />
-                        </td>
                     </tr>
                     <tr style="background:#f1f1f1">
-                        <td>
-                            <input id="save_button" type="submit" name="_Save" value="Save" onclick="changes_saved()"><note>click save!</note>
-                        </td>
-
                     </tr>
                 </table>
 
@@ -277,10 +276,29 @@
                                 <th id='maybe-counter'> 0 </th>
                                 <th id="total-counter">0/{{ user.profile.budget }}</th>
                             </tr>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th>
+                                    <input id="save_button" type="submit" name="_Save" value="Save" onclick="changes_saved()"><note>click save!</note>
+                                </th>
+                            </tr>
                         </table>
                     </div>
 
-
+                    <div class="thirdtable">
+                        <table style="width:100%; border:1px solid #f2f2f2;" align="left">
+                            <tr>
+                                <td>
+                                    Filter abstract:<br>
+                                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Filter by word..." title="Type in a name">
+                                </td>
+                                <td>
+                                    Filter keywords/title:<input type="search" class="form-control search" placeholder="Filter by word..." />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
 
 
 
@@ -291,7 +309,7 @@
                                     <tr>
                                         <th width="10px">_Choice_</th>
                                         <th>Paper ID</th>
-                                        <th>Bidding points <button name="_Save" onclick="sortTable()">Sort</button></th>
+                                        <th>Bidding points <button type="submit" name="_sort-points" value="sort" >Sort</button></th>
                                         <th>Title</th>
                                         <th width="20%">Abstract</th>
                                         <th>Keywords</th>
@@ -344,11 +362,21 @@
                 </div>
             </div>
         </div>
+        <!--save note side the save button-part1-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#save_button").click(function () {
+                    $("note").hide();
+                });
+            });
+        </script>
 
-        <script>//sortbids
+        <!--<script>
+            //sortbids
             function sortTable() {
                 var table, rows, switching, i, x, y, shouldSwitch;
-                table = document.getElementById("main-table");
+                table = document.getElementById("#main-table");
                 switching = true;
                 /*Make a loop that will continue until
                 no switching has been done:*/
@@ -363,8 +391,8 @@
                         shouldSwitch = false;
                         /*Get the two elements you want to compare,
                         one from current row and one from the next:*/
-                        x = rows[i].getElementsByTagName("TD")[2];
-                        y = rows[i + 1].getElementsByTagName("TD")[2];
+                        x = rows[i].getElementsByTagName("td")[2];
+                        y = rows[i + 1].getElementsByTagName("td")[2];
                         //check if the two rows should switch place:
                         if (Number(x.innerHTML) > Number(y.innerHTML)) {
                             //if so, mark as a switch and break the loop:
@@ -380,26 +408,9 @@
                     }
                 }
             }
-        </script>
-
-        <script>
-            //popup windows remind user to save
-            function importent() {
-                alert('Important: you have to click save before moving to another page or tab (including the Instructions tab).');
-            }
-        </script>
-
+        </script>-->
 
         <div id="snackbar">Thank you. Your changes have been saved!</div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">//save note side the save button-part1</script>
-        <script>
-            //save note side the save button-part2
-            $(document).ready(function () {
-                $("#save_button").click(function () {
-                    $("note").hide();
-                });
-            });
-        </script>
 
         <script>
             //after saved changes popup snackbar
@@ -618,4 +629,4 @@
         </script>
     </form>
 </body>
-    {% endblock content %}
+{% endblock content %}
