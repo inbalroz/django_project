@@ -27,6 +27,8 @@ urlpatterns = [
     path('confirmation/', user_views.confirmation, name='confirmation'),
     path('registerA/hebrewform.html', user_views.hebrewform, name='hebrewform.html'),
     path('registerA/englishform.html', user_views.englishform, name='englishform.html'),
+    path('registerB/hebrewform.html', user_views.hebrewform, name='hebrewform.html'),
+    path('registerB/englishform.html', user_views.englishform, name='englishform.html'),
 
     
 ]
