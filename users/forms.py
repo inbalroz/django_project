@@ -22,5 +22,5 @@ class ProfileRegisterForm(forms.ModelForm):
                                                               ('experience but did not participate in paper bidding',' I have experience in reviewing academic papers, but did not participate in paper bidding.'),
                                                               ('no experience','  I have no experience in  reviewing academic papers.')]) }
 
-    check1 = forms.BooleanField(required = True, label="Every paper is worth a certain amount of bidding points. A high number means a higher chance to get the paper due to lower demand.")
-    check2 = forms.BooleanField(required = True, label="You have to click 'save' before moving to another page or tab (including the Instructions tab).")
+    check1 = forms.BooleanField(required = True, label="Please sign the attached informed consent form below.")
+    check2 = forms.BooleanField(required = True, label="You have to click 'save' before moving to another page or tab.")

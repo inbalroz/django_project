@@ -1,4 +1,4 @@
-{% load crispy_forms_tags %}
+﻿{% load crispy_forms_tags %}
 {% block content %}
 
 
@@ -51,21 +51,23 @@
                 {% csrf_token %}
                 {{ form|crispy }}
                 {{ profile_form|crispy}}
-
                 <button type="submit" class="btn btn-success">Sign up</button>
-
                 <div style="color:red">
                     {% for message in messages %}
                     <h5> {{message|escape }} </h5>
                     {% endfor %}
                 </div>
             </div>
-            <!--<span>Please, <a href="{% url 'confirmation' %}">sign an experiment participation form.</a></span>-->
-            <div class="modal-footer">
-                <small class="text-muted">
-                    <span class="psw">Already Have An Account? <a href="{% url 'login' %}">Sign In</a></span>
-                </small>
+            <div style="text-align:center">
+                Informed Consent Form:
+                <button onclick="hebrewformclick()">עברית</button>
+                <button onclick="englishformclick()">English</button>
             </div>
+                <div class="modal-footer">
+                    <small class="text-muted">
+                        <span class="psw">Already Have An Account? <a href="{% url 'login' %}">Sign In</a></span>
+                    </small>
+                </div>
         </form>
     </div>
 </div>
@@ -149,6 +151,15 @@
     /*if the user clicks anywhere outside the select box,
     then close all select boxes:*/
     document.addEventListener("click", closeAllSelect);
+
+
+    function hebrewformclick() {
+        window.open('hebrewform.html');
+    }
+
+    function englishformclick() {
+        window.open('englishform.html');
+    }
 </script>
 
 
