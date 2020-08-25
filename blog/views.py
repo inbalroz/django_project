@@ -82,7 +82,6 @@ def instructions(request):
         return render(request, 'blog/blank.html', context)
 
 
-
 def Binstructions(request):
     context = {'papers_get': json["papers_get"],'money': json["money"],'extra_money_per_word_1': json["extra_money_per_word_1"],'paper_num_to_choose': json["paper_num_to_choose"]
                ,'extra_money_per_word_2': json["extra_money_per_word_2"],'deduct_money': json["deduct_money"]}

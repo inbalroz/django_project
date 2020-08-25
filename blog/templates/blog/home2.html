@@ -270,8 +270,15 @@
                                 <th id='maybe_num'> 0 </th>
                             </tr>
                             <tr>
-                                <th></th>
-                                <th></th>
+                                <th>
+                                    <span type="button" id="showyes" onclick="change_show_or_hide_yes()">
+                                        <div id="myyes" style="border: 1px solid black; background: #f2f2f2; text-align: center; font-size: 16px; color: black;">show yes</div>
+                                    </span>
+                                <th>
+                                    <span type="button" id="showmaybe" onclick="change_show_or_hide_maybe()">
+                                        <div id="mymaybe" style="border: 1px solid black; background: #f2f2f2; text-align: center; font-size: 16px; color: black;">show maybe</div>
+                                    </span>
+                                </th>
                                 <th></th>
                                 <th>
                                     <input id="save_button" type="submit" name="_Save" value="Save" onclick="changes_saved()"><note>click save!</note>
@@ -310,7 +317,7 @@
                                 </thead>
                                 <tbody>
                                     {% for essay in list %}
-                                    <tr>
+                                    <tr id="tr {{ essay.id }}">
                                         <td width="250">
                                             <fieldset>
                                                 <input type="radio" name="decision {{ essay.id }}" id="yes {{ essay.id }}" value="yes" onchange="yes_action({{ essay.id }})"> yes <br>
@@ -344,7 +351,6 @@
                                 </tbody>
                             </table>
                         </div>
-                        <input type="radio" name="id" value="{{ user.username }}" checked>
                         <textarea hidden id="log" name="log" rows="100" cols="40"> {{ user }}
                                                 time, value, essay_id
                             </textarea>
@@ -353,17 +359,8 @@
             </div>
         </div>
 
-
         <!--save note side the save button-part1-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-        <script>
-            $(document).ready(function () {
-                $("#save_button").click(function () {
-                    $("note").hide();
-                });
-            });
-        </script>
 
 
         <div id="snackbar">Thank you. Your changes have been saved!</div>
@@ -500,6 +497,29 @@
 
         </script>
 
+
+        <script>
+            function change_show_or_hide_yes() {
+                var x = document.getElementById("myyes");
+                if (x.innerHTML === "show yes") {
+                    x.innerHTML = "hide yes";
+                } else {
+                    x.innerHTML = "show yes";
+                }
+            }
+        </script>
+
+        <script>
+            function change_show_or_hide_maybe() {
+                var x = document.getElementById("mymaybe");
+                if (x.innerHTML === "show maybe") {
+                    x.innerHTML = "hide maybe";
+                } else {
+                    x.innerHTML = "show maybe";
+                }
+            }
+        </script>
+
         <script>
         window.onload = function WindowLoad(event) {
             document.getElementById('keywords_list').innerHTML = "{{ user.profile.keywords }}".replace(/,/gi,"<br>");
@@ -534,6 +554,7 @@
             document.getElementById('yes_num').innerHTML = ('yes bids: ' + yes_list.length);
             document.getElementById('maybe_num').innerHTML = ('maybe bids: ' + maybe_list.length);
         }
+
         function yes_action(id) {
             yes_list.push(id);
             index = maybe_list.indexOf(id);
@@ -544,6 +565,16 @@
             var n = d.getTime();
             document.getElementById('log').value += n + ", 1, " + id + " \\\n";
             update();
+            document.getElementById("tr " + id).style.display = 'none';
+
+            $("#showyes").click(function () {
+                var x = document.getElementById("tr " + id);
+                if (x.style.display === 'none') {
+                    x.style.display = 'table-row';
+                } else {
+                    x.style.display = 'none';
+                }
+            });
         }
 
         function no_action(id) {
@@ -571,6 +602,15 @@
             var n = d.getTime();
             document.getElementById('log').value += n + ", 0," + id + " \\\n";
             update();
+            document.getElementById("tr " + id).style.display = 'none';
+            $("#showmaybe").click(function () {
+                var x = document.getElementById("tr " + id);
+                if (x.style.display === 'none') {
+                    x.style.display = 'table-row';
+                } else {
+                    x.style.display = 'none';
+                }
+            });
         }
 
         </script>

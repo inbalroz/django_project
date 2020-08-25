@@ -277,8 +277,16 @@
                                 <th id="total-counter">0/{{ user.profile.budget }}</th>
                             </tr>
                             <tr>
-                                <th></th>
-                                <th></th>
+                                <th>
+                                    <span type="button" id="showyes" onclick="change_show_or_hide_yes()">
+                                        <div id="myyes" style="border:1px solid black ;background: #f2f2f2 ;
+                                            text-align: center; font-size: 16px; color:black;">show yes</div>
+                                    </span>
+                                <th>
+                                    <span type="button" id="showmaybe" onclick="change_show_or_hide_maybe()">
+                                        <div id="mymaybe" style="border: 1px solid black; background: #f2f2f2; text-align: center; font-size: 16px; color: black;">show maybe</div>
+                                    </span>
+                                </th>
                                 <th>
                                     <input id="save_button" type="submit" name="_Save" value="Save" onclick="changes_saved()"><note>click save!</note>
                                 </th>
@@ -309,7 +317,7 @@
                                     <tr>
                                         <th width="10px">_Choice_</th>
                                         <th>Paper ID</th>
-                                        <th>Bidding points <button type="submit" name="_sort-points" value="sort" >Sort</button></th>
+                                        <th>Bidding points <button type="submit" name="_sort-points" value="sort">Sort</button></th>
                                         <th>Title</th>
                                         <th width="20%">Abstract</th>
                                         <th>Keywords</th>
@@ -317,7 +325,7 @@
                                 </thead>
                                 <tbody>
                                     {% for essay in list %}
-                                    <tr>
+                                    <tr id="tr {{ essay.id }}">
                                         <td width="250">
                                             <fieldset>
                                                 <input type="radio" name="decision {{ essay.id }}" id="yes {{ essay.id }}" value="yes" onchange="yes_action({{ essay.id }})"> yes <br>
@@ -373,44 +381,67 @@
         </script>
 
         <!--<script>
-            //sortbids
-            function sortTable() {
-                var table, rows, switching, i, x, y, shouldSwitch;
-                table = document.getElementById("#main-table");
-                switching = true;
-                /*Make a loop that will continue until
-                no switching has been done:*/
-                while (switching) {
-                    //start by saying: no switching is done:
-                    switching = false;
-                    rows = table.rows;
-                    /*Loop through all table rows (except the
-                    first, which contains table headers):*/
-                    for (i = 1; i < (rows.length - 1); i++) {
-                        //start by saying there should be no switching:
-                        shouldSwitch = false;
-                        /*Get the two elements you want to compare,
-                        one from current row and one from the next:*/
-                        x = rows[i].getElementsByTagName("td")[2];
-                        y = rows[i + 1].getElementsByTagName("td")[2];
-                        //check if the two rows should switch place:
-                        if (Number(x.innerHTML) > Number(y.innerHTML)) {
-                            //if so, mark as a switch and break the loop:
-                            shouldSwitch = true;
-                            break;
-                        }
-                    }
-                    if (shouldSwitch) {
-                        /*If a switch has been marked, make the switch
-                        and mark that a switch has been done:*/
-                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                        switching = true;
+        //sortbids
+        function sortTable() {
+            var table, rows, switching, i, x, y, shouldSwitch;
+            table = document.getElementById("#main-table");
+            switching = true;
+            /*Make a loop that will continue until
+            no switching has been done:*/
+            while (switching) {
+                //start by saying: no switching is done:
+                switching = false;
+                rows = table.rows;
+                /*Loop through all table rows (except the
+                first, which contains table headers):*/
+                for (i = 1; i < (rows.length - 1); i++) {
+                    //start by saying there should be no switching:
+                    shouldSwitch = false;
+                    /*Get the two elements you want to compare,
+                    one from current row and one from the next:*/
+                    x = rows[i].getElementsByTagName("td")[2];
+                    y = rows[i + 1].getElementsByTagName("td")[2];
+                    //check if the two rows should switch place:
+                    if (Number(x.innerHTML) > Number(y.innerHTML)) {
+                        //if so, mark as a switch and break the loop:
+                        shouldSwitch = true;
+                        break;
                     }
                 }
+                if (shouldSwitch) {
+                    /*If a switch has been marked, make the switch
+                    and mark that a switch has been done:*/
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                }
             }
-        </script>-->
+        }
+    </script>-->
+
+        <script>
+            function change_show_or_hide_yes() {
+                var x = document.getElementById("myyes");
+                if (x.innerHTML === "show yes") {
+                    x.innerHTML = "hide yes";
+                } else {
+                    x.innerHTML = "show yes";
+                }
+            }
+        </script>
+
+        <script>
+            function change_show_or_hide_maybe() {
+                var x = document.getElementById("mymaybe");
+                if (x.innerHTML === "show maybe") {
+                    x.innerHTML = "hide maybe";
+                } else {
+                    x.innerHTML = "show maybe";
+                }
+            }
+        </script>
 
         <div id="snackbar">Thank you. Your changes have been saved!</div>
+
 
         <script>
             //after saved changes popup snackbar
@@ -598,6 +629,16 @@
             var n = d.getTime();
             document.getElementById('log').value += n + ", 1, " + id + " \\\n";
             update_sums();
+            document.getElementById("tr " + id).style.display = 'none';
+
+            $("#showyes").click(function () {
+            var x = document.getElementById("tr " + id);
+            if (x.style.display === 'none') {
+                x.style.display = 'table-row';
+            } else {
+                x.style.display = 'none';
+                }
+            });
         }
 
         function no_action(id) {
@@ -625,6 +666,15 @@
             var n = d.getTime();
             document.getElementById('log').value += n + ", 0," + id + " \\\n";
             update_sums();
+            document.getElementById("tr " + id).style.display = 'none';
+            $("#showmaybe").click(function () {
+                var x = document.getElementById("tr " + id);
+                if (x.style.display === 'none') {
+                    x.style.display = 'table-row';
+                } else {
+                    x.style.display = 'none';
+                }
+            });
         }
         </script>
     </form>
