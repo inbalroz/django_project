@@ -35,6 +35,22 @@ def home(request):
             return render(request, 'blog/home.html', context)
         elif request.user.profile.group == 'B':
             return render(request, 'blog/home2.html', context)
+    elif request.method == 'POST' and '_Saved' in request.POST:
+        content = ''
+        for i in range(len(Essay_list)):
+            submitted = '0'
+            if request.POST["decision {}".format(i)] == "yes":
+                submitted = '2'
+            elif request.POST["decision {}".format(i)] == "maybe":
+                submitted = '1'
+            content = content + submitted
+        log = request.POST["log"]
+        post = Post(id=str(request.user.id), content=str(content), log=log)
+        post.save()
+        profile = Profile(user=request.user, state=str(content), log=request.user.profile.log +"\n"+ log, keywords=request.user.profile.keywords,prices=request.user.profile.prices, group=request.user.profile.group, academic_position=request.user.profile.academic_position, article_reviewed=request.user.profile.article_reviewed)
+        profile.save()
+        print("success")
+        return render(request, 'blog/completed.html')
     elif request.method == 'POST' and '_sort-points' in request.POST:
         prices = request.user.profile.prices.split(",")
         prices = [int(i) for i in prices]
@@ -81,6 +97,18 @@ def instructions(request):
     else:
         return render(request, 'blog/blank.html', context)
 
+def instructionsbefore(request):
+    context = {'papers_get': json["papers_get"],'money': json["money"],'extra_money_per_word_1': json["extra_money_per_word_1"],'budget': json["budget"],
+               'paper_num_to_choose': json["paper_num_to_choose"],'extra_money_per_word_2': json["extra_money_per_word_2"],'deduct_money': json["deduct_money"]}
+    if request.user.is_authenticated:
+        if request.user.profile.group == 'A':
+            return render(request, 'blog/Ainstructionsbefore.html', context)
+        elif request.user.profile.group == 'B':
+            return render(request, 'blog/Binstructionsbefore.html', context)
+    else:
+        return render(request, 'blog/blank.html', context)
+    
+
 
 def Binstructions(request):
     context = {'papers_get': json["papers_get"],'money': json["money"],'extra_money_per_word_1': json["extra_money_per_word_1"],'paper_num_to_choose': json["paper_num_to_choose"]
@@ -90,3 +118,12 @@ def Binstructions(request):
 
 def blank(request):
     return render(request, 'blog/blank.html')
+
+def completed(request):
+    return render(request, 'blog/completed.html')
+
+def exam(request):
+    return render(request, 'blog/exam.html')
+
+def examB(request):
+    return render(request, 'blog/examB.html')

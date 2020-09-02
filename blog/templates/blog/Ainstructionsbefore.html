@@ -74,7 +74,7 @@
 <p>
     <br>
 </p>
-<p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Suppose that paper #174 contains the word “</span><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">LDA</span><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">" in the title and the words "</span><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">vectors</span><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">" and "</span><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">multiprocessing</span><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">" in the abstract. Then it is highly relevant.</span></p>
+<p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Suppose that paper #174 contains the word "</span><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">LDA</span><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">" in the title and the words "</span><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">vectors</span><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">" and "</span><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">multiprocessing</span><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">" in the abstract. Then it is highly relevant.</span></p>
 <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Suppose that papers {#174, #332} are highly relevant, papers {#196, #304, #347} are relevant, and paper #3 is irrelevant.&nbsp;</span></p>
 <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Then the total payment to Jane is {{money}} + 2*{{extra_money_per_word_2}} + 3*{{extra_money_per_word_1}} - {{deduct_money}} NIS. &nbsp;&nbsp;</span></p>
 <p>
@@ -82,9 +82,9 @@
 </p>
 
 <div class="w3-container">
-    <a href="{% url 'blog-home' %}" style="width: 330px;
+    <a href="{% url 'blog-exam' %}" style="width: 330px;
         height: 100px; background: #6c757d;
-        text-align: center; font-size: 25px; margin-left:350px; padding-top:1em; color:black;" class="w3-button"><b>Continue experiment</b></a>
+        text-align: center; font-size: 25px; margin-left:350px; padding-top:1em; color:black;" class="w3-button"><b>Continue quiz</b></a>
 </div>
 
 
@@ -95,26 +95,4 @@
     <br>
 </p>
 
-<!--<script>
-    function showbutton() {
-        if (window.history.assign === "{% url 'registerA' %}") {
-            var btn = document.createElement("BUTTON");
-            btn.innerHTML = "go to quiz";
-            btn.id = "btn";
-            document.body.appendChild(btn);
-            btn.onclick = function () {
-                window.location.href = "{% url 'blog-exam' %}";
-            };
-        } else {
-            var btn = document.createElement("BUTTON");
-            btn.innerHTML = "home page";
-            btn.id = "btn";
-            document.body.appendChild(btn);
-            btn.onclick = function () {
-                window.location.href = "{% url 'blog-home' %}";
-            };
-        }
-    }
-
-</script>-->
 {% endblock content %}

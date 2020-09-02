@@ -46,7 +46,7 @@ def registerA(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('blog-instructions')
+            return redirect('blog-instructionsbefore')
         else:
             for error in form.errors.values():
                 messages.append(error[0])       
@@ -79,7 +79,7 @@ def registerB(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('blog-Binstructions')
+            return redirect('blog-Binstructionsbefore')
         else:
             for error in form.errors.values():
                 messages.append(error[0])       

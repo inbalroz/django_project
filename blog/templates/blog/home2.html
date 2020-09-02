@@ -270,14 +270,14 @@
                                 <th id='maybe_num'> 0 </th>
                             </tr>
                             <tr>
-                                <th>
+                                <th><!--
                                     <span type="button" id="showyes" onclick="change_show_or_hide_yes()">
                                         <div id="myyes" style="border: 1px solid black; background: #f2f2f2; text-align: center; font-size: 16px; color: black;">show yes</div>
-                                    </span>
-                                <th>
+                                    </span>-->
+                                <th><!--
                                     <span type="button" id="showmaybe" onclick="change_show_or_hide_maybe()">
                                         <div id="mymaybe" style="border: 1px solid black; background: #f2f2f2; text-align: center; font-size: 16px; color: black;">show maybe</div>
-                                    </span>
+                                    </span>-->
                                 </th>
                                 <th></th>
                                 <th>
@@ -291,11 +291,11 @@
                         <table style="width:100%; border:1px solid #f2f2f2;" align="left">
                             <tr>
                                 <td>
-                                    Filter abstract:<br>
+                                    <b>Filter abstract:</b><br>
                                     <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Filter by word..." title="Type in a name">
                                 </td>
                                 <td>
-                                    Filter keywords/title:<input type="search" class="form-control search" placeholder="Filter by word..." />
+                                    <b>Filter keywords/title:</b><input type="search" class="form-control search" placeholder="Filter by word..." />
                                 </td>
                             </tr>
                         </table>
@@ -565,16 +565,16 @@
             var n = d.getTime();
             document.getElementById('log').value += n + ", 1, " + id + " \\\n";
             update();
-            document.getElementById("tr " + id).style.display = 'none';
+            //document.getElementById("tr " + id).style.display = 'none';
 
-            $("#showyes").click(function () {
-                var x = document.getElementById("tr " + id);
-                if (x.style.display === 'none') {
-                    x.style.display = 'table-row';
-                } else {
-                    x.style.display = 'none';
-                }
-            });
+            //$("#showyes").click(function () {
+            //  var x = document.getElementById("tr " + id);
+            //  if (x.style.display === 'none') {
+            //      x.style.display = 'table-row';
+            //  } else {
+            //       x.style.display = 'none';
+            //  }
+            //});
         }
 
         function no_action(id) {
@@ -602,15 +602,15 @@
             var n = d.getTime();
             document.getElementById('log').value += n + ", 0," + id + " \\\n";
             update();
-            document.getElementById("tr " + id).style.display = 'none';
-            $("#showmaybe").click(function () {
-                var x = document.getElementById("tr " + id);
-                if (x.style.display === 'none') {
-                    x.style.display = 'table-row';
-                } else {
-                    x.style.display = 'none';
-                }
-            });
+            //document.getElementById("tr " + id).style.display = 'none';
+            //$("#showmaybe").click(function () {
+            //    var x = document.getElementById("tr " + id);
+            //    if (x.style.display === 'none') {
+            //        x.style.display = 'table-row';
+            //    } else {
+            //        x.style.display = 'none';
+            //  }
+            //});
         }
 
         </script>
