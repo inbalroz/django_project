@@ -2,6 +2,9 @@
     {
         border: 1px dotted black;
     }
+    body {
+        margin-left:350px;
+    }
 
     p.question {
         font-family: Arial, sans-serif;
@@ -114,9 +117,9 @@
         }
 </style>
 <body>
-    <h2 class="quizHeader">Take a Quiz!</h2>
+    <h2 class="quizHeader" style="width:950px;">Take a Quiz!</h2>
 
-    <table style="width:950px; height:500px;">
+    <table style="width:950px;">
         <tr>
             <td>
                 <div>
@@ -137,6 +140,8 @@
                     </ul>
                 </div>
             </td>
+        </tr>
+        <tr>
             <td>
                 <div>
                     <p class="question">2. How many papers will you be assigned?</p>
@@ -156,6 +161,8 @@
                     </ul>
                 </div>
             </td>
+        </tr>
+        <tr>
             <td>
                 <div>
                     <p class="question">3. If you have not submitted bids, what is expected to happen?</p>
@@ -177,23 +184,18 @@
             <td colspan="2">
                 <div>
                     <p class="question">
-                        4. Following the example in the instructions, Jane has the personal keywords {<b>NLP, vectors, multiprocessing, LDA, quantum computing, coil</b>}.<br>
-                        Suppose now that papers {#174} are highly relevant, papers {#196, #304, #347, #332} are relevant, and paper #3 is irrelevant.<br>
-                        Then the total payment to Jane is:
+                        4. Paper A contains (in the title, keywords or abstract) 2 of your personal keywords and paper B contains 3 of your personal keywords:
                     </p>
 
                     <ul>
                         <input class="answer" type="radio" name="q4" value="0">
-                        <label>22</label>
+                        <label>I will get a higher bonus if I get paper A.</label>
                         <br>
                         <input class="answer" type="radio" name="q4" value="1">
-                        <label id="correctString4">23</label>
+                        <label id="correctString4">I will get a higher bonus if I get paper B.</label>
                         <br>
                         <input class="answer" type="radio" name="q4" value="0">
-                        <label>24</label>
-                        <br>
-                        <input class="answer" type="radio" name="q4" value="0">
-                        <label>25</label>
+                        <label>I will get the same bonus in both papers.</label>
                     </ul>
                 </div>
             </td>

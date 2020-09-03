@@ -216,26 +216,49 @@
         {% csrf_token %}
         <div class="container">
             <div class="row">
-                <table style="width:18%; height:100%">
+                <table style="border: 0px solid #ddd; width: 18%; height: 100%">
                     <tr>
                         <th><b>Personal Keywords</b></th>
                     </tr>
                     <tr style="border: 1px solid #ddd;">
                         <td id="keywords_list">
                             <!--Filter by personal keywords:<br>
-                            <div id="keyword-filters">
-                            {% for keyword in user.profile.keywords_as_list %}
-                            <input type="checkbox" id="filter-{{keyword}}" value="{{keyword}}" /> <label for="filter-{{keyword}}">{{keyword}}</label><br>
-                            {% endfor %}
-                        </div>
-                            <input type="button" id="filter-button" value="Filter">-->
+                <div id="keyword-filters">
+                {% for keyword in user.profile.keywords_as_list %}
+                <input type="checkbox" id="filter-{{keyword}}" value="{{keyword}}" /> <label for="filter-{{keyword}}">{{keyword}}</label><br>
+                {% endfor %}
+            </div>
+                <input type="button" id="filter-button" value="Filter">-->
 
                     </tr>
-                    <tr style="border: 0px solid #ddd; background:#f1f1f1">
+                    <tr style="border-top: 1px solid #ddd; background:#fafafa">
+                        <td>
+                        </td>
                     </tr>
-                    <tr>
+                    <tr style="border: 0px solid #ddd; background:#fafafa">
+                        <td>
+                        </td>
                     </tr>
-                    <tr>
+                    <tr style="border: 0px solid #ddd; background: #fafafa">
+                        <td>
+                        </td>
+                    </tr>
+                    <tr style="border: 0px solid #ddd; background: #fafafa">
+                        <td>
+                        </td>
+                    </tr>
+                    <tr style="border: 0px solid #ddd; background: #fafafa">
+                        <td>
+                        </td>
+                    </tr>
+                    <tr style="border: 0px solid #ddd; background: #fafafa">
+                        <td>
+                        </td>
+                    </tr>
+                    <tr style="border: 0px solid #ddd; background: #fafafa; font-size:24px;">
+                        <td>
+                            <input type="submit" value="Submit and finish" name="_Saved" style="border: 1px solid black; background: #6c757d; text-align: center; font-size: 26px; color: white;" />
+                        </td>
                     </tr>
                 </table>
 
