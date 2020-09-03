@@ -123,14 +123,14 @@
         <tr>
             <td>
                 <div>
-                    <p class="question">1. How many papers should you bid?</p>
+                    <p class="question">1. How many papers should you bid on?</p>
 
                     <ul>
                         <input class="answer" type="radio" name="q1" value="1">
                         <label id="correctString1">You may bid on any number of papers.</label>
                         <br>
                         <input class="answer" type="radio" name="q1" value="0">
-                        <label>24</label>
+                        <label>Between 4 and 12 papers.</label>
                         <br>
                         <input class="answer" type="radio" name="q1" value="0">
                         <label>4</label>
@@ -148,7 +148,7 @@
 
                     <ul>
                         <input class="answer" type="radio" name="q2" value="0">
-                        <label>You will be assigned for any number of papers.</label>
+                        <label>You may be assigned any number of papers.</label>
                         <br>
                         <input class="answer" type="radio" name="q2" value="1">
                         <label id="correctString2">8</label>
@@ -157,7 +157,7 @@
                         <label>4</label>
                         <br>
                         <input class="answer" type="radio" name="q2" value="0">
-                        <label>24</label>
+                        <label>Between 4 and 12 papers.</label>
                     </ul>
                 </div>
             </td>
@@ -175,7 +175,7 @@
                         <label id="correctString3">You will receive exactly 8 papers according to our needs.</label>
                         <br>
                         <input class="answer" type="radio" name="q3" value="0">
-                        <label>I will not be assigned any papers.</label>
+                        <label>You will not be assigned any papers.</label>
                     </ul>
                 </div>
             </td>
@@ -189,13 +189,37 @@
 
                     <ul>
                         <input class="answer" type="radio" name="q4" value="0">
-                        <label>I will get a higher bonus if I get paper A.</label>
+                        <label>You will get a higher bonus if you get paper A.</label>
                         <br>
                         <input class="answer" type="radio" name="q4" value="1">
-                        <label id="correctString4">I will get a higher bonus if I get paper B.</label>
+                        <label id="correctString4">You will get a higher bonus if you get paper B.</label>
                         <br>
                         <input class="answer" type="radio" name="q4" value="0">
-                        <label>I will get the same bonus in both papers.</label>
+                        <label>You will get the same bonus in both papers.</label>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div>
+                    <p class="question">
+                        5. Following the example in the instructions, after the experiment is over, Jane is assigned 8 papers:  {#174, #196, #304, #332, #347, #66, #3, #189}</b>.<br>
+                        Suppose now that paper #174 is highly relevant, papers {#196, #304, #347, #332} are relevant, paper #3 is irrelevant and papers {#66, #189} are without bonus.<br>
+                        Then the total payment to Jane is:
+                    </p>
+                    <ul>
+                        <input class="answer" type="radio" name="q5" value="0">
+                        <label>22</label>
+                        <br>
+                        <input class="answer" type="radio" name="q5" value="1">
+                        <label id="correctString5">23</label>
+                        <br>
+                        <input class="answer" type="radio" name="q5" value="0">
+                        <label>24</label>
+                        <br>
+                        <input class="answer" type="radio" name="q5" value="0">
+                        <label>25</label>
                     </ul>
                 </div>
             </td>
@@ -213,6 +237,7 @@
     <div class="quizAnswers" id="correctAnswer2"></div>
     <div class="quizAnswers" id="correctAnswer3"></div>
     <div class="quizAnswers" id="correctAnswer4"></div>
+    <div class="quizAnswers" id="correctAnswer5"></div>
 
     <!--show score upon submit-->
     <div>
@@ -242,12 +267,12 @@
         }
 
         // calc score with answerScore function
-        var calcScore = (answerScore('q1') + answerScore('q2') + answerScore('q3') + answerScore('q4'));
+        var calcScore = (answerScore('q1') + answerScore('q2') + answerScore('q3') + answerScore('q4') + answerScore('q5'));
         console.log("CalcScore: " + calcScore); // it works!
 
         // function to return correct answer string
         function correctAnswer(correctStringNo, qNumber) {
-            console.log("qNumber: " + qNumber);  // logs 1,2,3,4 after called below
+            console.log("qNumber: " + qNumber);  // logs 1,2,3,4,5 after called below
             return ("The correct answer for question #" + qNumber + ": &nbsp;<strong>" +
                 (document.getElementById(correctStringNo).innerHTML) + "</strong>");
         }
@@ -264,6 +289,9 @@
         }
         if (answerScore('q4') === 0) {
             document.getElementById('correctAnswer4').innerHTML = correctAnswer('correctString4', 4);
+        }
+        if (answerScore('q5') === 0) {
+            document.getElementById('correctAnswer5').innerHTML = correctAnswer('correctString5', 5);
         }
 
         // calculate "possible score" integer
@@ -284,7 +312,7 @@
             showScore = showScore + "&nbsp; <strong>Please, try again.</strong>"
         }
         document.getElementById('userScore').innerHTML = showScore;
-        if (calcScore === 4) {
+        if (calcScore === 5) {
             var btn = document.createElement("BUTTON");
             btn.innerHTML = "Start experiment";
             btn.id = "btn";
