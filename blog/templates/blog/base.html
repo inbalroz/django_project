@@ -28,7 +28,7 @@
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav" >
                         {% if user.is_authenticated %}
-                        <p style="margin: 7px 0 0 0">Hello, <b> {{ user.username }}</b></p>
+                        <p style="margin: 8px 0 0 0">Hello, <b> {{ user.username }}</b></p>
                         <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
                         {% else %}
                         <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
